@@ -50,7 +50,6 @@ app.get('/api/persons/:id', (request, response) => {
    if (!person) {
        return response.status(404).end()
    }
-
    response.json(person);
 });
 
@@ -84,6 +83,19 @@ app.delete('/api/persons/:id', (request, response) => {
     persons = persons.filter( person => person.id !== personId);
         response.status(204).end();
  });
+
+ app.put('/api/persons/:id', (request, response) => {
+  const body = request.body;
+  const personId = Number(request.params.id);
+  const personIndex = persons.findIndex( person => person.id === personId);
+  const updatedPerson = {    
+    ...body
+  }
+  const updatedPersons = [...persons]
+  updatedPersons.splice(personIndex, 1, updatedPerson);
+  persons = updatedPersons;      
+  response.json(updatedPerson);    
+});
 
 const PORT= process.env.PORT || 3001
 app.listen(PORT)
