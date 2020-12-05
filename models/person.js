@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
 
 const url = process.env.MONGODB_URL
 
-mongoose.connect(url, {useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex:true});
+mongoose.connect(url, { useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex:true })
 const personSchema = new mongoose.Schema({
   name:{
     type:String,
